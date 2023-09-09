@@ -1,14 +1,13 @@
-import { CanActivateFn, UrlTree, mapToCanActivate } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 import { inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 
 
 export const authGuard: CanActivateFn = (route, state) => {
   const accountService: AccountService = inject(AccountService);
   const toastr: ToastrService = inject(ToastrService);
-  console.log('guard check now');
 
   return accountService.currentUser$.pipe(
     map(user => {
